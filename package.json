@@ -1,0 +1,21 @@
+{
+  "name": "@puzzleframework/auth",
+  "version": "1.0.2",
+  "description": "Passport JWT authentication engine for Puzzle framework",
+  "main": "index.js",
+  "keywords": [
+    "passport",
+    "puzzle framework",
+    "jwt",
+    "authentication",
+    "authorization"
+  ],
+  "peerDependencies": {
+    "@puzzleframework/core": "latest",
+    "jsonwebtoken": "^8.4.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "author": "Valentin Duricu <valentin.duricu@spark-dev.ro>",
+  "license": "SEE LICENSE IN LICENSE.md"
+}
