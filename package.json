@@ -1,6 +1,6 @@
 {
   "name": "@puzzleframework/auth",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Passport JWT authentication engine for Puzzle framework",
   "main": "index.js",
   "keywords": [
@@ -11,7 +11,7 @@
     "authorization"
   ],
   "peerDependencies": {
-    "@puzzleframework/core": "latest",
+    "@puzzleframework/core": "^1.4.0",
     "jsonwebtoken": "^8.4.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0"
