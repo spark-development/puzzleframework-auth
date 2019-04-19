@@ -7,6 +7,16 @@ const authHdr = require("passport-jwt/lib/auth_header");
 
 const { ExtractJwt, Strategy } = passportJWT;
 
+const tokenExtractor = (req) => {
+  let authParams = authHdr.parse(req.headers.authorization);
+  if (authParams && authParams.scheme.toLowerCase() === "bearer") {
+    return authParams.value;
+  }
+
+  authParams = ExtractJwt.fromUrlQueryParameter("token")(req);
+  return authParams || "";
+};
+
 /**
  * Passport authentication functionality configuration function.
  *
@@ -23,7 +33,7 @@ module.exports = (fetchUserCallback) => {
    */
   const config = {
     secretOrKey: puzzle.config.auth.jwtSecret,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    jwtFromRequest: tokenExtractor,
     issuer: puzzle.config.auth.issuer,
     audience: puzzle.config.auth.audience,
     ignoreExpiration: false
@@ -111,13 +121,7 @@ module.exports = (fetchUserCallback) => {
      * @return {string|Object}
      */
     extractor(req) {
-      let authParams = authHdr.parse(req.headers.authorization);
-      if (authParams && authParams.scheme.toLowerCase() === "bearer") {
-        return authParams.value;
-      }
-
-      authParams = ExtractJwt.fromUrlQueryParameter("token")(req);
-      return authParams || "";
+      return tokenExtractor(req);
     }
   };
 
