@@ -11,7 +11,7 @@
     "authorization"
   ],
   "peerDependencies": {
-    "@puzzleframework/core": "latest"
+    "@puzzleframework/core": "^1.4.0"
   },
   "dependencies": {
     "jsonwebtoken": "^8.4.0",
