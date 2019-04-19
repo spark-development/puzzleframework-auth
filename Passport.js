@@ -111,11 +111,13 @@ module.exports = (fetchUserCallback) => {
      * @return {string|Object}
      */
     extractor(req) {
-      const authParams = authHdr.parse(req.headers.authorization);
+      let authParams = authHdr.parse(req.headers.authorization);
       if (authParams && authParams.scheme.toLowerCase() === "bearer") {
         return authParams.value;
       }
-      return "";
+
+      authParams = ExtractJwt.fromUrlQueryParameter("token")(req);
+      return authParams || "";
     }
   };
 
